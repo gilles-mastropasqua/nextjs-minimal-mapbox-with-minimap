@@ -12,7 +12,7 @@ This project provides an example of how to use Mapbox GL JS in a Next.js applica
 First, clone this repository to your local machine:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/gilles-mastropasqua/nextjs-minimal-mapbox.git
 ```
 
 ### 2. Install Dependencies
@@ -20,7 +20,7 @@ git clone <repository-url>
 Navigate to the project directory and install the necessary dependencies using npm or yarn:
 
 ```bash
-cd <repository-directory>
+cd nextjs-minimal-mapbox
 npm install
 # or
 yarn install
@@ -48,27 +48,7 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running.
 
-### 5. Build for Production
 
-To create an optimized build for production, run:
-
-```bash
-npm run build
-# or
-yarn build
-```
-
-This will generate a `.next` folder containing the optimized files.
-
-### 6. Start the Production Server
-
-To run the production server, use:
-
-```bash
-npm run start
-# or
-yarn start
-```
 
 ## Code Explanation
 
