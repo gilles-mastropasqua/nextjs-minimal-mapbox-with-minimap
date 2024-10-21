@@ -2,6 +2,9 @@
 
 This project provides an example of how to use Mapbox GL JS in a Next.js application. It demonstrates the integration of Mapbox with a simple interactive map. The map uses Tailwind CSS for styling and supports environment variable configuration for security purposes.
 
+![Mapbox Example](https://3w-creation.net/demo-myMapbox.png)
+
+
 ## Setup Instructions
 
 ### 1. Clone the Repository
