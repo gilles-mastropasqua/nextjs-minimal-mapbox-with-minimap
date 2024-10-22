@@ -1,4 +1,4 @@
-import MyMapboxMap from "@/app/Components/MyMapboxMap";
+import MyMapboxMap from "@/app/components/MyMapboxMap";
 
 export default function Home() {
   return (
