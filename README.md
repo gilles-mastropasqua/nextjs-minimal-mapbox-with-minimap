@@ -4,6 +4,12 @@ This project provides an example of how to use Mapbox GL JS in a Next.js applica
 
 ![Mapbox Example](https://3w-creation.net/demo-myMapbox.png)
 
+## Live Demo
+
+You can check out the live version of this project here:
+
+[Next.js Minimal Mapbox - Live Demo](https://nextjs-minimal-mapbox.vercel.app)
+
 
 ## Setup Instructions
 
