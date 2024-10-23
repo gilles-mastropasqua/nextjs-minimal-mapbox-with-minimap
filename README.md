@@ -1,6 +1,8 @@
 # Next.js Mapbox Example
 
-This project is a demonstration of the [`react-mapbox-minimap`](https://www.npmjs.com/package/react-mapbox-minimap) package, showcasing how to integrate Mapbox GL JS into a Next.js application, focusing on adding a minimap to the main interactive map. The map uses Tailwind CSS for styling and supports environment variable configuration for security purposes.
+This project is a demonstration of the [`react-mapbox-minimap`](https://www.npmjs.com/package/react-mapbox-minimap) package, showcasing how to integrate Mapbox GL JS into a Next.js application, focusing on adding a minimap to the main interactive map. The map uses Tailwind CSS for styling and supports environment variable configuration for security purposes. 
+
+The minimap displays a smaller version of the main map, highlighting a portion of the view with a tracking rectangle. The minimap can be customized, moved, and resized based on your needs.
 
 ![Mapbox Example](https://3w-creation.net/demo-myMapbowWithMinimap.png)
 
