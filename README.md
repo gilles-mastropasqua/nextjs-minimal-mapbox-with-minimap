@@ -1,14 +1,14 @@
 # Next.js Mapbox Example
 
-This project provides an example of how to use Mapbox GL JS in a Next.js application. It demonstrates the integration of Mapbox with a simple interactive map. The map uses Tailwind CSS for styling and supports environment variable configuration for security purposes.
+This project is a demonstration of the [`react-mapbox-minimap`](https://www.npmjs.com/package/react-mapbox-minimap) package, showcasing how to integrate Mapbox GL JS into a Next.js application, focusing on adding a minimap to the main interactive map. The map uses Tailwind CSS for styling and supports environment variable configuration for security purposes.
 
-![Mapbox Example](https://3w-creation.net/demo-myMapbox.png)
+![Mapbox Example](https://3w-creation.net/demo-myMapbowWithMinimap.png)
 
 ## Live Demo
 
 You can check out the live version of this project here:
 
-[Next.js Minimal Mapbox - Live Demo](https://nextjs-minimal-mapbox.vercel.app)
+[Next.js Minimal Mapbox with minimap - Live Demo](https://nextjs-minimal-mapbox-with-minimap.vercel.app)
 
 
 ## Setup Instructions
@@ -18,7 +18,7 @@ You can check out the live version of this project here:
 First, clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/gilles-mastropasqua/nextjs-minimal-mapbox.git
+git clone https://github.com/gilles-mastropasqua/nextjs-minimal-mapbox-with-minimap.git
 ```
 
 ### 2. Install Dependencies
@@ -58,8 +58,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 
 ## Code Explanation
 
-The main component of interest is the `Map` component located in the file that imports `mapbox-gl`. This component initializes a Mapbox map, sets the default center coordinates to Borneo, and applies a specific map style (`outdoors-v12`).
-
+This project demonstrates how to add a minimap to a Mapbox instance using the Map component, which initializes and renders the interactive map.
 ```tsx
 "use client";
 
@@ -67,6 +66,9 @@ The main component of interest is the `Map` component located in the file that i
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useEffect, useRef } from "react";
+
+import Minimap from 'react-mapbox-minimap';
+import {MapInstance, MapLib} from "react-mapbox-minimap/dist/types";
 
 // Setting the Mapbox access token from the environment variable
 // Make sure to add your Mapbox API key in the .env.local file like this:
@@ -91,8 +93,25 @@ const Map = () => {
         map.current = new mapboxgl.Map({
             container: mapContainer.current as HTMLDivElement, // The HTML container for the map
             style: "mapbox://styles/mapbox/outdoors-v12", // Mapbox style to use
-            center: [114.21, 0.87], // Initial longitude and latitude for the map's center
-            zoom: 5, // Initial zoom level
+            center: [178.0, -17.8], // Initial longitude and latitude for the map's center
+            zoom: 9, // Initial zoom level
+        });
+
+        // Event listener for when the map finishes loading
+        map.current.on("load", function () {
+            // Initialize the Minimap instance with configuration options
+            const minimap = new Minimap(mapboxgl as MapLib<MapInstance>, {
+                center: [178.0, -17.8],
+                style: "mapbox://styles/mapbox/outdoors-v12",
+                toggleDisplay: true,
+                zoomLevelOffset: -4,
+                scrollZoom: true,
+                disableMinimapMoveOnDrag: true,
+                enableResize: true,
+                enableMove: true,
+            });
+            // Add the minimap control to the main map, positioned in the bottom-right corner
+            map.current!.addControl(minimap as mapboxgl.IControl, "bottom-right");
         });
 
         // Clean up the map instance only when the component unmounts
@@ -110,14 +129,16 @@ const Map = () => {
 
 export default Map;
 
+
 ```
 
 ### Key Parts of the Code:
 
 1. **Environment Variables**: The Mapbox access token is pulled from `process.env.NEXT_PUBLIC_MAPBOX_API_KEY`. This allows for safe storage and easy updates of API keys without hardcoding them.
 2. **`useRef` for DOM Reference**: The `mapContainer` reference is used to point to the DOM element where the map will be rendered. `map` is used to store the map instance.
-3. **Mapbox Map Initialization**: The map is initialized using `new mapboxgl.Map()`, with coordinates set to center on Borneo (`[114.21, 0.87]`).
-4. **Cleanup**: The cleanup function (`map.current.remove()`) ensures that the map is properly destroyed when the component is unmounted, preventing memory leaks.
+3. **Mapbox Map Initialization**: The map is initialized using `new mapboxgl.Map()`, with coordinates set to center on Viti Levu (`[114.21, 0.87]`).
+4. **Minimap Addition**: A minimap is added to the map once it has finished loading. The minimap uses the same style as the main map but is configured to be zoomed out (zoomLevelOffset: -4). The minimap is positioned in the bottom-right corner, and users can toggle its display, resize, or move it.
+5. **Cleanup**: The cleanup function (`map.current.remove()`) ensures that the map is properly destroyed when the component is unmounted, preventing memory leaks.
 
 ### Example Usage
 
